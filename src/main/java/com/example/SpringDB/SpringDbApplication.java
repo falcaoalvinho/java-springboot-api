@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootApplication
-public class SpringDbApplication implements CommandLineRunner{
+public class SpringDbApplication {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -16,15 +16,15 @@ public class SpringDbApplication implements CommandLineRunner{
 		SpringApplication.run(SpringDbApplication.class, args);
 	}
 	
-	@Override
-	public void run(String... args) throws Exception {
-		String sql = "INSERT INTO Banda(nome, anoLancamento) VALUES(?, ?)";
-		
-		int result = jdbcTemplate.update(sql, "Djavú", 2000);
-		
-		if (result > 0) {
-			System.out.println("Um novo registro foi gerado no banco");
-		}
-	}
+//	@Override
+//	public void run(String... args) throws Exception {
+//		String sql = "INSERT INTO Banda(nome, anoLancamento) VALUES(?, ?)";
+//		
+//		int result = jdbcTemplate.update(sql, "Djavú", 2000);
+//		
+//		if (result > 0) {
+//			System.out.println("Um novo registro foi gerado no banco");
+//		}
+//	}
 
 }

@@ -10,7 +10,7 @@ public interface ICrud{
 	
 	public Banda buscaPorId(int id);
 		
-	public Banda altera(Banda b, int id);
+	public int altera(Banda b, int id);
 
 	public Banda insere(Banda b);
 }

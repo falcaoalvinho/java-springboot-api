@@ -11,11 +11,13 @@ import com.example.SpringDB.model.Banda;
 @Repository
 public class BandaRepository implements ICrud{
 	
-	public String SELECT = "SELECT * FROM Banda";
+	public String SELECT = "SELECT id, nome, anoLancamento FROM Banda";
 	
-	public String SELECT_ID = "SELECT * FROM Banda WHERE id = ?";
+	public String SELECT_ID = "SELECT id, nome, anoLancamento FROM Banda WHERE id = ?";
 	
 	public String INSERT = "INSERT INTO Banda (nome, anoLancamento) VALUES(?, ?)";
+	
+	public String UPDATE = "UPDATE banda SET nome = ?, anoLancamento = ? WHERE id = ?";
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -29,14 +31,19 @@ public class BandaRepository implements ICrud{
 
 	@Override
 	public Banda buscaPorId(int id) {
-		// TODO Auto-generated method 
-		return null;
+		Object[] params = {id};
+		
+		return jdbcTemplate.queryForObject(SELECT_ID, params, (rs, rowNum) -> {
+			return new Banda(rs.getInt("id"),rs.getString("nome"), rs.getInt("anoLancamento"));
+		});
 	}
 
 	@Override
-	public Banda altera(Banda b, int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public int altera(Banda b, int id) {
+		
+		Object[] params = {b.getNome(), b.getAnoLancamento(), id};
+		
+		return jdbcTemplate.update(UPDATE, params);
 	}
 
 	@Override
