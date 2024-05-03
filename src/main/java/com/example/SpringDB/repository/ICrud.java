@@ -12,5 +12,5 @@ public interface ICrud{
 		
 	public int altera(Banda b, int id);
 
-	public Banda insere(Banda b);
+	public int insere(Banda b);
 }

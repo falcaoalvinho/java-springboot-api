@@ -3,6 +3,7 @@ package com.example.SpringDB.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,4 +38,10 @@ public class BandaController {
 	public String AlteraPorId(@RequestBody Banda banda, @PathVariable int id ) {
 		return String.valueOf(repository.altera(banda, id));
 	}
+	
+	@PostMapping()
+	public String Insere(@RequestBody Banda banda) {
+		return String.valueOf(repository.insere(banda));
+	}
+	
 }

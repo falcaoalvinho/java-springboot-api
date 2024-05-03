@@ -15,7 +15,7 @@ public class BandaRepository implements ICrud{
 	
 	public String SELECT_ID = "SELECT id, nome, anoLancamento FROM Banda WHERE id = ?";
 	
-	public String INSERT = "INSERT INTO Banda (nome, anoLancamento) VALUES(?, ?)";
+	public String INSERT = "INSERT INTO Banda (id, nome, anoLancamento) VALUES(default, ?, ?)";
 	
 	public String UPDATE = "UPDATE banda SET nome = ?, anoLancamento = ? WHERE id = ?";
 	
@@ -47,9 +47,11 @@ public class BandaRepository implements ICrud{
 	}
 
 	@Override
-	public Banda insere(Banda b) {
-
-		return null;
+	public int insere(Banda b) {
+		Object[] params = {b.getNome(), b.getAnoLancamento()};
+		
+		return jdbcTemplate.update(INSERT, params);
+		
 	}
 
 
